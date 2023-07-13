@@ -1,0 +1,14 @@
+#!/bin/bash
+echo 'enter file name'
+read fileName
+echo '#!/bin/bash' > $fileName
+echo 'enter the command'
+read command
+echo $command  >> $fileName
+chmod +x $fileName
+echo '----Success----'
+echo '--file info--'
+echo 'content --'
+cat $fileName
+echo 'wc--'
+wc $fileName
