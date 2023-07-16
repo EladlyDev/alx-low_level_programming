@@ -8,7 +8,6 @@ int i;
 char alpha[] = "abcdefghijklmnopqrstuvwxyz";
 int alpha_size = (sizeof(alpha) / sizeof(alpha[0]) - 1);
 
-printf("%d\n", alpha_size);
 for (i = 0; i < alpha_size; i++)
 {
 putchar(alpha[i]);
