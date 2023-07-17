@@ -11,7 +11,7 @@
 	 {
 	   for(p = 48; p < 58; p++)
 	     {
-	       for(r = j + 1; r < 58; r++)
+	       for(r = 48; r < 58; r++)
 		 {
 		   putchar(i);
 		   putchar(j);
