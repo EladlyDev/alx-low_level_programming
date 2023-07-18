@@ -1,10 +1,11 @@
 #include "main.h"
-/*
- * main, Entry point which uses main.h as a header file
- */int main(void)
+
+void print_alphabet(void)
 {
-   /*
-    * this function prints alphabet characters
-    */print_alphabet();
-return (0);
+  int i;
+  for (i = 97; i < 123; i++)
+    {
+      _putchar(i);
+    }
+  _putchar('\n');
 }
