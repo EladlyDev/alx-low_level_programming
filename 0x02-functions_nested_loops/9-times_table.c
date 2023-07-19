@@ -23,6 +23,5 @@ else
 printf("%3d,", sum);
 }
 }
-_putchar('\n');
 }
 }
