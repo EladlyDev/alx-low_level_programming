@@ -12,12 +12,15 @@ for (n = 0; n < 10; n++)
 {
 int sum = n * mb;
 if (n == 0)
+printf("%d,", sum);
+
+else if (n == 9)
 {
-printf("%d", sum);
+printf("%3d\n", sum);
 }
 else
 {
-printf(",%3d", sum);
+printf("%3d,", sum);
 }
 }
 _putchar('\n');
