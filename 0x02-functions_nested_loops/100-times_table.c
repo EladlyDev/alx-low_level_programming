@@ -18,11 +18,11 @@ printf("%d,", sum);
 
 else if (n == i)
 {
-printf("%3d\n", sum);
+printf("%4d\n", sum);
 }
 else
 {
-printf("%3d,", sum);
+printf("%4d,", sum);
 }
 }
 }
