@@ -27,4 +27,8 @@ printf("%4d,", sum);
 }
 }
 }
+if (i == 0)
+{
+printf("%d\n", i);
+}
 }
