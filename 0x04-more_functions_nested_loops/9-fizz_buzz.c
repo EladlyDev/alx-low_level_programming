@@ -23,7 +23,10 @@
 		{
 			printf("%d", i);
 		}
+		if (i != 100)
+		{
 		putchar(32);
+		}
 	}
 	putchar(10);
 	return (0);
