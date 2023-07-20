@@ -4,21 +4,20 @@
    * 14, followed by a new line.
    */void more_numbers(void)
 {
-	int i, j, y;
+	int i, j;
 
 	for (i = 0; i < 10; i++)
 	{
-		for (j = 48; j <= 57; j++)
+		for (j = 0; j <= 14; j++)
 		{
-			_putchar(j);
-			if (j == 57)
+			int j_ascii = '0' + j;
+
+			if (j > 9)
 			{
-				for (y = 48; y <= 52; y++)
-				{
-					_putchar(49);
-					_putchar(y);
-				}
+				j_ascii = (j % 10) + '0';
+				_putchar(49);
 			}
+			_putchar(j_ascii);
 		}
 		_putchar('\n');
 	}
