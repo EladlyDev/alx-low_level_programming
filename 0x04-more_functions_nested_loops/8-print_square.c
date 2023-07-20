@@ -9,10 +9,10 @@
 	{
 		for (col = 0; col < size; col++)
 		{
-			_putchar(35);
+			_putchar("#");
 			for (row = 1; row < size; row++)
 			{
-				_putchar(35);
+				_putchar("#");
 			}
 			_putchar(10);
 		}
