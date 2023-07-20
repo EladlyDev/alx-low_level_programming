@@ -5,7 +5,11 @@
 {
 	int row, col;
 
-	if (size)
+	if (size <= 0)
+	{
+		_putchar(10);
+	}
+	else
 	{
 		for (col = 0; col < size; col++)
 		{
@@ -16,9 +20,5 @@
 			}
 			_putchar(10);
 		}
-	}
-	else
-	{
-		_putchar(10);
 	}
 }
