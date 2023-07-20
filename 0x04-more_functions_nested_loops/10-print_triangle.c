@@ -18,7 +18,7 @@
 			}
 			for (y = 0; y < hash; y++)
 			{
-				_putchar(35);
+				_putchar('#');
 			}
 			_putchar(10);
 		}
