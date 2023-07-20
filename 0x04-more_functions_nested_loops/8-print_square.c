@@ -10,7 +10,7 @@
 		for (col = 0; col < size; col++)
 		{
 			_putchar(35);
-			for (row = 0; row < size; row++)
+			for (row = 1; row < size; row++)
 			{
 				_putchar(35);
 			}
