@@ -1,0 +1,23 @@
+#include "main.h"
+/*
+   * This function prints a triangle
+   */void print_triangle(int size);
+{
+	int wcol, wrow, bcol, brow;
+
+	if(size){
+		for (wcol = size * 2; wcol > size; wcol--)
+		{
+			putchar(35);
+			for (wrow = size; wrow < size; wrow++)
+			{
+				putchar(35);
+			}
+			putchar(10);
+		}
+	}
+	else
+	{
+		_putchar('\n');
+	}
+}
