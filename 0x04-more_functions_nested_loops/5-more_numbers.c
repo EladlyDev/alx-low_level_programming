@@ -6,7 +6,7 @@
 {
 	int i, j, y;
 
-	for (i = 0; i <= 10; i++)
+	for (i = 0; i < 10; i++)
 	{
 		for (j = 48; j <= 57; j++)
 			if (j == 57)
