@@ -5,7 +5,11 @@
 {
 	int i;
 
-	if (size)
+	if (size <= 0)
+	{
+		_putchar(10);
+	}
+	else
 	{
 		for (i = 1; i <= size; i++)
 		{
@@ -18,13 +22,9 @@
 			}
 			for (y = 0; y < hash; y++)
 			{
-				_putchar('#');
+				_putchar(35);
 			}
 			_putchar(10);
 		}
-	}
-	else
-	{
-		_putchar(10);
 	}
 }
