@@ -13,7 +13,8 @@
 	}
 	for (i = 0; count >= i; count--)
 	{
-		_putchar(s[count]);
+		if (s[count] != '\0')
+			_putchar(s[count]);
 	}
 	_putchar(10);
 }
