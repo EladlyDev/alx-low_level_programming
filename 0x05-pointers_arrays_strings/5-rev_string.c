@@ -5,13 +5,13 @@
 {
 	int i = 0, count = 0;
 	int t = 0;
-
+	/* "My School" */
 	while (s[i] != '\0')
 	{
 		i++;
 		count++;
 	}
-	for (i = count; count >= 0; count--)
+	for (i = 0; count >= i; count--)
 	{
 		if (s[count] != '\0')
 		{
