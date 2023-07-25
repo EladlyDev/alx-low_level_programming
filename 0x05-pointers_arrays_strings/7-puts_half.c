@@ -6,7 +6,7 @@
 	/*get string's length*/
 	int i, len, half;
 
-	i = len = 0;
+	i = len = half  = 0;
 	while (str[i] != '\0')
 	{
 		i++;
