@@ -20,8 +20,11 @@
 	/*print the last half*/
 	while (half <= len)
 	{
-		_putchar(str[half]);
-		half++;
+		if (str[half] != '\0')
+		{
+			_putchar(str[half]);
+			half++;
+		}
 	}
 	/*print new line*/
 	_putchar (10);
