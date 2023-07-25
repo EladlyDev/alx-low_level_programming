@@ -23,9 +23,8 @@
 		if (str[half] != '\0')
 		{
 			_putchar(str[half]);
-			half++;
 		}
+		half++;
 	}
-	/*print new line*/
-	_putchar (10);
+	_putchar(10);
 }
