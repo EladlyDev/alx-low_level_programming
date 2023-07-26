@@ -8,21 +8,15 @@ int _strlen(char *);
  */
 char *_strcat(char *dest, char *src)
 {
-	char tmp[100];
-	char *p = tmp;
 	int dest_len = _strlen(dest);
 	int src_len = _strlen(src);
 	int i, j;
 
-	for (i = 0; i <= dest_len; i++)
+	for (i = 0, j = 1; i < src_len; i++, j++)
 	{
-		tmp[i] = dest[i];
+		dest[dest_len + j] = src[i];
 	}
-	for (i = 0, j = 1; i <= src_len; i++, j++)
-	{
-		tmp[dest_len + j] = src[i];
-	}
-	return (p);
+	return (dest);
 }
 
 
