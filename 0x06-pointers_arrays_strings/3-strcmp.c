@@ -1,5 +1,6 @@
 #include "main.h"
 #include <string.h>
+#include <stdio.h>
 /*
  * _strcmp - This function compares two strings,
  * work exactly like strcmp
@@ -22,9 +23,9 @@
 	for (i = 0; i < end; i++)
 	{
 		if (s1[i] > s2[i])
-			result++;
+			result = s1[i] + s2[i];
 		else if (s1[i] < s2[i])
-			result--;
+			result = s1[i] - s2[i];
 	}
 	return (result);
 }
