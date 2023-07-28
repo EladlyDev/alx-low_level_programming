@@ -21,15 +21,14 @@ void range(int *, int, int);
 		for (j = 0; j < 26; j++)
 		{
 			if (src[i] == a_low[j])
-			{
 				src[i] = a_cap[j];
-				j++;
-			}
 		}
-		i++;
 	}
 	return (src);
 }
+
+
+
 /*
    */void range(int *a, int s, int e)
 {
