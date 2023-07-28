@@ -9,9 +9,9 @@
 
 char *leet(char *src)
 {
-    char a_low[5] = {'a', 'e', 'o', 't', 'l'};
-	char a_upp[5] = {'A', 'E', 'O', 'T', 'L'};
-	int a_num[5] = {4, 3, 0, 7, 1};
+	char a_low[] = {'a', 'e', 'o', 't', 'l'};
+	char a_upp[] = {'A', 'E', 'O', 'T', 'L'};
+	char a_num[] = {'4', '3', '0', '7', '1'};
 	int src_len = strlen(src);
 	int i, j;
 
