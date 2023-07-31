@@ -1,34 +1,30 @@
 #include <stdio.h>
-/*                                                              
- *Entry Point                                                   
- */int main(void)
- {
-   int i, j, p, r;
+#include <stdio.h>
+/**            
+ * main - Entry Point                                                   
+ * Return: 0, means always ok
+ */
+int main(void)
+{
+	int fd, sd, td, fod;
 
-   for (i = 48; i < 58; i++)
-     {
-       for (j = i == 0 ? 49 : 48; j < 58; j++)
-         {
-           for(p = i == 0 ? 49 : 48; p < 58; p++)
-             {
-               for(r = j == 0 ? 49 : 48; r < 58; r++)
-                 {
-                   putchar(i);
-                   putchar(j);
-                   putchar(32);
-                   putchar(p);
-                   putchar(r); 
-                   if(!(i == 57 && j == 57 && p == 57 && r == 5\
-7))
-                     {
-                       putchar(44);
-                       putchar(32);
-                     }
-                 }
-             }
-         }
-     }
-
-   putchar('\n');
-   return (0);
- }
+	for (fd = 0; fd < 9; fd++)
+	{
+		for (sd = 0; sd < 7; sd++)
+		{
+			for (td = 0; td < 9; td++)
+			{
+				for (fod = 0; fod < 9; fod++)
+				{
+					putchar(fod + '0');
+					putchar(sd + '0');
+					putchar(",");
+					putchar(" ");
+					putchar(td + '0');
+					putchar(fod + '0');
+				}
+			}
+		}
+	}
+	return (0);
+}
