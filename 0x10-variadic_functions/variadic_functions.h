@@ -16,10 +16,15 @@ void print_float(va_list);
 void print_string(va_list);
 
 /* Structures */
+/**
+ * struct type - defines the propreat func for a data type.
+ * @c: character indicating the type.
+ * @f: the function for each type.
+ **/
 typedef struct type
 {
 	char c;
 	void (*f)(va_list);
-}type_t;
+} type_t;
 
 #endif /* _VARIADIC_FUNCTIONS_ */
