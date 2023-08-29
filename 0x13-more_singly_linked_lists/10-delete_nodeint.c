@@ -9,44 +9,40 @@
  **/
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-	listint_t *start, *preTarget, *target, *afterTarget;
-	unsigned int i = 0;
+	listint_t *start, *preTarget, *target, *temp;
+	unsigned int i = 0, count;
 
 	if (head == NULL)
 		return (-1);
 
-	start = *head;
-	if (index == 0)
-	{
-		if (*head)
-		{
-			target = start;
-			afterTarget = target->next;
-			*head = afterTarget;
-			free(target);
-			return (1);
-		}
+	/* getting the length and check if index is suitable */
+	for (count = 0, start = *head; start != NULL; count++, start = start->next)
+		;
+	if (index > count || count == 0)
 		return (-1);
-	}
 
-	while (start != NULL)
+	/* setting target and preTarget */
+	target = preTarget = *head;
+	while (i != index)
 	{
-		if (i == index - 1)
-		{
-			preTarget = start;
-			break;
-		}
-		start = start->next;
+		preTarget = target;
+		target = target->next;
 		i++;
 	}
 
-	if (preTarget)
+	/* if i was equal to index and the loop didn't work */
+	if (preTarget == target)
 	{
-		target = preTarget->next;
-		afterTarget = target->next;
-		preTarget->next = afterTarget;
-		free(target);
-		return (1);
+		temp = target;
+		*head = target->next;
+		free(temp);
 	}
-	return (-1);
+	else
+	{
+		temp = target;
+		preTarget->next = target->next;
+		free(temp);
+	}
+
+	return (1);
 }

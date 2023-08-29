@@ -16,36 +16,33 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	if (head == NULL)
 		return (NULL);
 
-	start = ptr = prePtr = *head;
 	/* check if idx is suitable */
-	while (start->next != NULL)
-	{
-		start = start->next;
+	start = *head;
+	while (start != NULL)
+	{	start = start->next;
 		count++;
-	} count++;
+	}
 	if (idx > count)
 		return (NULL);
 
+	/* initialize */
+	ptr = prePtr = *head;
 	newNode = malloc(sizeof(listint_t));
 	if (!newNode)
 		return (NULL);
 	newNode->n = n;
 
-	while (i != idx)
-	{
-		prePtr = ptr;
-		ptr = ptr->next;
-		i++;
-	}
+	/* get the node at idx, and the one before it */
+	for (i = 0; i != idx; prePtr = ptr, ptr = ptr->next, i++)
+		;
 
+	/* if idx was 0 and the loop didn't work */
 	if (prePtr == ptr)
-	{
-		newNode->next = *head;
+	{newNode->next = *head;
 		*head = newNode;
 	}
 	else
-	{
-		prePtr->next = newNode;
+	{	prePtr->next = newNode;
 		newNode->next = ptr;
 	}
 
