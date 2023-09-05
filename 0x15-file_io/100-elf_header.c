@@ -198,7 +198,7 @@ void print_more_osabi(Elf64_Ehdr h)
 			printf("UNIX - OpenBSD");
 		break;
 	default:
-		printf("<unknown: %x", h.e_ident[EI_OSABI]);
+		printf("%s", "");
 		break;
 	}
 }
