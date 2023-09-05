@@ -4,6 +4,7 @@ void print_entry(Elf64_Ehdr h);
 void print_type(Elf64_Ehdr h);
 void print_abiversion(Elf64_Ehdr h);
 void print_osabi(Elf64_Ehdr h);
+void print_more_osabi(Elf64_Ehdr h);
 void print_version(Elf64_Ehdr h);
 void print_data(Elf64_Ehdr h);
 void print_class(Elf64_Ehdr h);
@@ -35,7 +36,7 @@ int main(int ac, char **av)
 	if (h.e_ident[0] == 0x7f && h.e_ident[1] == 'E' && h.e_ident[2] == 'L'
 		&& h.e_ident[3] == 'F')
 	{
-		printf("ELF HEADER:\n");
+		printf("ELF Header:\n");
 	}
 	else
 		dprintf(STDERR_FILENO, "Not ELF file: %s\n", av[1]), exit(98);
@@ -49,8 +50,12 @@ int main(int ac, char **av)
 	print_type(h);
 	print_entry(h);
 
-	close(fd);
-	return (0);
+	if (close(fd) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", fd);
+		exit(98);
+	}
+	return (EXIT_SUCCESS);
 }
 
 /**
@@ -98,13 +103,13 @@ void print_data(Elf64_Ehdr h)
 	switch (h.e_ident[EI_DATA])
 	{
 	case ELFDATANONE:
-		printf("Unknown data format.");
+		printf("Unknown data format");
 		break;
 	case ELFDATA2LSB:
-		printf("Two's complement, little-endian.");
+		printf("2's complement, little endian");
 		break;
 	case ELFDATA2MSB:
-		printf("Two's complement, big-endian.");
+		printf("2's complement, big endian");
 		break;
 	}
 	printf("\n");
@@ -116,7 +121,7 @@ void print_data(Elf64_Ehdr h)
  */
 void print_version(Elf64_Ehdr h)
 {
-	printf("  Version:                           ");
+	printf("  Version:                           %d", h.e_ident[EI_VERSION]);
 	switch (h.e_ident[EI_VERSION])
 	{
 	case EV_NONE:
@@ -139,36 +144,63 @@ void print_osabi(Elf64_Ehdr h)
 	switch (h.e_ident[EI_OSABI])
 	{
 	case ELFOSABI_NONE:
-		printf("UNIX System V ABI");
+		printf("UNIX - System V");
 			break;
 	case ELFOSABI_HPUX:
-		printf("HP-UX ABI");
+		printf("UNIX - HP-UX");
 		break;
 	case ELFOSABI_NETBSD:
-		printf("NetBSD ABI");
+		printf("UNIX - NetBSD");
 		break;
 	case ELFOSABI_LINUX:
-		printf("Linux ABI");
+		printf("UNIX - Linux");
 		break;
 	case ELFOSABI_SOLARIS:
-		printf("Solaris ABI");
+		printf("UNIX - Solaris");
 		break;
-	case ELFOSABI_IRIX:
-		printf("IRIX ABI");
+	case ELFOSABI_AIX:
+		printf("UNIX - AIX");
 		break;
-	case ELFOSABI_FREEBSD:
-		printf("FreeBSD ABI");
+	default:
+		print_more_osabi(h);
 		break;
-	case ELFOSABI_TRU64:
-		printf("TRU64 UNIX ABI");
-		break;
-	case ELFOSABI_ARM:
-		printf("ARM architecture ABI");
-		break;
-	case ELFOSABI_STANDALONE:
-		printf("Stand-alone (embedded) ABI");
 	}
 	printf("\n");
+}
+
+/**
+ * print_more_osabi - prints more osabi
+ * @h: the elf header
+ **/
+void print_more_osabi(Elf64_Ehdr h)
+{
+	switch (h.e_ident[EI_OSABI])
+	{
+		case ELFOSABI_IRIX:
+		printf("UNIX - IRIX");
+		break;
+	case ELFOSABI_FREEBSD:
+		printf("UNIX - FreeBSD");
+		break;
+	case ELFOSABI_TRU64:
+		printf("UNIX - TRU64");
+		break;
+	case ELFOSABI_ARM:
+		printf("ARM");
+		break;
+	case ELFOSABI_STANDALONE:
+		printf("Standalone App");
+		break;
+	case ELFOSABI_MODESTO:
+		printf("Novell - Modesto");
+		break;
+	case ELFOSABI_OPENBSD:
+			printf("UNIX - OpenBSD");
+		break;
+	default:
+		printf("<unknown: %x", h.e_ident[EI_OSABI]);
+		break;
+	}
 }
 
 /**
@@ -226,7 +258,7 @@ void print_entry(Elf64_Ehdr h)
 	int i = 0, len = 0;
 	unsigned char *p = (unsigned char *)&h.e_entry;
 
-	printf("  Entry point address:               ");
+	printf("  Entry point address:               0x");
 	if (h.e_ident[EI_DATA] != ELFDATA2MSB)
 	{
 		i = h.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
