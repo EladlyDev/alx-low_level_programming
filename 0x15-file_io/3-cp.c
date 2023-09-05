@@ -37,7 +37,8 @@ int main(int ac, char **av)
 		len = read(in, buff, 1024);
 		if (len == -1)
 			error(IN, in_path, 0);
-		write(out, buff, len);
+		if ((write(out, buff, len)) == -1)
+			error(OUT, out_path, 0);
 	}
 		while (len > 0)
 			;
