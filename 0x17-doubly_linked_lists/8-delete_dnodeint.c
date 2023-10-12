@@ -1,15 +1,16 @@
 #include "lists.h"
 
 /**
- * delete_dnodeint_at_index - deletes the node at index of a distint_t linked list.
+ * delete_dnodeint_at_index - deletes the node at index
+ * of a distint_t linked list.
  * @head: the header of the linked list.
- * @index: the index to be removed.
+ * @idx: the index to be removed.
  *
  * Return: 1 on success, -1 on failure.
  **/
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int idx)
 {
-	dlistint_t *del, *tmp;
+	dlistint_t *tmp;
 
 	if (!*head || !head)
 		return (-1);
@@ -19,24 +20,28 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int idx)
 	{
 		if (idx == 0)
 			break;
-		idx--;
 		tmp = tmp->next;
+		idx--;
 	}
 
 	if (!tmp)
 		return (-1);
 
-	del = tmp;
-	printf("hi\n");
-	if (tmp->prev)
+	if (tmp->prev && tmp->next) /* remove at the middle */
 	{
 		tmp->prev->next = tmp->next;
-		if (tmp->next)
-			tmp->next->prev = tmp->prev;
+		tmp->next->prev = tmp->prev;
 	}
-	else
+	else if (!tmp->prev && tmp->next) /* remove at the beginning */
+	{
 		tmp->next->prev = NULL;
+		*head = tmp->next;
+	}
+	else if (!tmp->next && tmp->prev)	/* remove at end */
+		tmp->prev->next = NULL;
+	else					/* if there only one node */
+		*head = NULL;
 
-	free(del);
+	free(tmp);
 	return (1);
 }
