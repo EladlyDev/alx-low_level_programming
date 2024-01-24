@@ -1,0 +1,31 @@
+# The compiler
+CC = gcc
+# The source files
+SRC = main.c school.c
+# The object files
+OBJ = $(SRC:.c=.o)
+# The name of the output
+NAME = school
+# The program used to remove stuff
+RM = rm
+# The compiler flags
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+# run all these even if there is a file with the same name
+# or there are no updation on the prequists
+.PHONY : all clean oclean fclean re
+
+all : $(OBJ)
+	$(CC) $(CFLAGS) $^ -o $(NAME)
+
+clean :
+	$(RM) -f *~ $(NAME)
+
+oclean :
+	$(RM) -f $(OBJ)
+
+# runs the two
+fclean : clean oclean
+
+# forces recompilation of all source files
+re : oclean all
