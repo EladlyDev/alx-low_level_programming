@@ -1,0 +1,6 @@
+# compiles the school.c file
+
+all : school
+
+school : main.c school.c
+	gcc $^ -o $@
