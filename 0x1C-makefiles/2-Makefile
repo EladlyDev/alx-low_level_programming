@@ -1,0 +1,16 @@
+# The compiler
+CC = gcc
+# The source files
+SRC = main.c school.c
+# The desired output
+NAME = school
+# The object files (before the linking phase)
+OBJ = $(SRC:.c=.o)
+
+# Deal with `all` ass a function not a file
+# This means it'll be executed even if there is
+# a file with the same name
+.PHONY : all
+# The compilation
+all: $(OBJ)
+	$(CC) $^ -o $(NAME)
