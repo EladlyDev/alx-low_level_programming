@@ -1,36 +1,52 @@
 #include "search_algos.h"
 
-void print(int *array, size_t i, size_t n)
+/**
+ * print - prints a part of an array
+ * @array: the array
+ * @start: the start point
+ * @end: the end point
+ **/
+void print(int *array, size_t start, size_t end)
 {
+	size_t i;
+
 	printf("Searching in array: ");
-	for (; i < n; i++)
+	for (i = start; i <= end; i++)
 	{
-		if (i == n - 1)
-			printf("%i\n", array[i]);
-		else
+		if (i != end)
 			printf("%i, ", array[i]);
-	}
-}
-
-int helper(int *array, int val, size_t l, size_t r, size_t n)
-{
-	print(array, l, r);
-	if (l <= r) {
-		size_t mid = l + (r - l) / 2;
-		if (val == array[mid])
-			return mid;
-		else if (val > array[mid])
-		{
-			return helper(array, val, mid + 1, r, n);
-		}
 		else
-		{
-			return helper(array, val, l, mid - 1, n);
-		}
+			printf("%i\n", array[i]);
 	}
-
-	return -1;
 }
+
+
+/**
+ * helper - a recursive function helper to perform bs
+ * @array: the array to search in
+ * @value: the value to search for
+ * @l: the start left point
+ * @r: the end right point
+ *
+ * Return: the index of the element, -1 if not founded
+ **/
+int helper(int *array, int value, size_t l, size_t r)
+{
+	if (l <= r)
+	{
+		size_t m = (l + r) / 2;
+
+		print(array, l, r);
+		if (array[m] == value)
+			return (m);
+		else if (array[m] < value)
+			return (helper(array, value, m + 1, r));
+		else
+			return (helper(array, value, l, m - 1));
+	}
+	return (-1);
+}
+
 
 /**
  * binary_search - searches for a value in a sorted array of integers using
@@ -43,5 +59,7 @@ int helper(int *array, int val, size_t l, size_t r, size_t n)
  **/
 int binary_search(int *array, size_t n, int value)
 {
-	return helper(array, value, 0, n, n);
+	if (!array || n == 0)
+		return (-1);
+	return (helper(array, value, 0, n - 1));
 }
